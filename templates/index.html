@@ -7,35 +7,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
     <title>Weather App</title>
 </head>
 
 <body>
     <div class="container">
-        <div class="formbox">
-            <form action="{{url_for('index_post')}}" method="POST">
-                <div class="mb-3">
-                    <label for="cityinput" class="form-label">Search CITY</label>
-                    <input type="text" class="form-control" name="cityname" id="exampleInputEmail1"
-                        aria-describedby="emailHelp">
-                    <br>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                    {% with messages = get_flashed_messages(with_categories=true) %}
-                    {% if messages %}
-                    {% for category, message in messages %}
-                    {% set message_class = 'danger' %}
+        <div class="row">
+            <div class="col">
+                <div class="formbox">
+                    <form action="{{url_for('index_post')}}" method="POST">
+                        <div class="mb-3">
+                            <label for="cityinput" class="form-label">Search CITY</label>
+                            <input type="text" class="form-control" name="cityname" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
+                            <br>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                            {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                            {% for category, message in messages %}
+                            {% set message_class = 'danger' %}
 
-                    {% if category == 'success' %}
-                    {% set message_class = 'is-success' %}
-                    {% endif %}
-                    <div class="alert alert-{{message_class}}" role="alert">
-                        {{ message }}
-                    </div>
+                            {% if category == 'success' %}
+                            {% set message_class = 'is-success' %}
+                            {% endif %}
+                            <div class="alert alert-{{message_class}}" role="alert">
+                                {{ message }}
+                            </div>
 
-                    {% endfor %}
-                    {% endif %}
-                    {% endwith %}
-            </form>
+                            {% endfor %}
+                            {% endif %}
+                            {% endwith %}
+                    </form>
+                </div>
+            </div>
         </div>
         <div class="weatherdata">
             {% for city in weater_data%}

@@ -12,13 +12,21 @@
 </head>
 
 <body>
+    <nav class="navbar ">
+        <div class="container-fluid">
+            <a class="navbar-brand">Weather App</a>
+            <form class="d-flex">
+
+            </form>
+        </div>
+    </nav>
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="col search">
                 <div class="formbox">
                     <form action="{{url_for('index_post')}}" method="POST">
                         <div class="mb-3">
-                            <label for="cityinput" class="form-label">Search CITY</label>
+                            <label for="cityinput" class="form-label">Search City</label>
                             <input type="text" class="form-control" name="cityname" id="exampleInputEmail1"
                                 aria-describedby="emailHelp">
                             <br>
@@ -42,27 +50,37 @@
                 </div>
             </div>
         </div>
+        <hr>
+        <br>
         <div class="weatherdata">
-            {% for city in weater_data%}
-            <div class="card mb-3" style="max-width: 300px;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="http://openweathermap.org/img/w/{{ city.icon }}.png" class="card-img-top" alt="...">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">{{city.name}}</h5>
-                            <h6 class="card-text">{{city.weather}}</h6>
-                            <p class="card-text">{{city.discription}}</p>
-                            <a href="{{url_for('delete', city_id=city.id)}}" class="btn btn-danger">Delete</a>
+            <div class="row">
+                {% for city in weater_data%}
+                <div class="col-lg-4 col-sm-6">
+                    <div class="card mb-3" style="max-width: 300px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="http://openweathermap.org/img/w/{{ city.icon }}.png" class="card-img-top"
+                                    alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{city.name}}</h5>
+                                    <h6 class="card-text">{{city.weather}}</h6>
+                                    <p class="card-text">{{city.discription}}</p>
+                                    <a href="{{url_for('delete', city_id=city.id)}}" class="btn btn-danger">Delete</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
 
-            {% endfor %}
-
         </div>
+    </div>
+
+    <div id="footer" class="font-style-san">
+        &copy; Copyright 2010 by <a href="https://github.com/gabbar23/Weather-App-Flask">Aman Saini</a>.
     </div>
 </body>
 
